@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .container {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        form {
+            display: inline-block;
+            margin: 0 20px;
+            text-align: left;
+        }
+
+        input[type="text"] {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Users List</h1>
+
+<!-- Формы для добавления, удаления и обновления пользователя -->
+<div class="form-container">
+
+    <!-- Форма для добавления пользователя -->
+    <form method="post" action="/addUser">
+        <h2>Add User</h2>
+        <label for="name_add">User Name</label><br>
+        <input name="name" type="text" id="name_add"><br>
+        <label for="age_add">User Age</label><br>
+        <input name="age" type="text" id="age_add"><br>
+        <input type="submit" value="Add User">
+    </form>
+
+    <!-- Форма для удаления пользователя -->
+    <form method="post" action="/deleteUser">
+        <h2>Delete User</h2>
+        <label for="id_delete">User ID</label><br>
+        <input name="id" type="text" id="id_delete"><br>
+        <input type="submit" value="Delete User">
+    </form>
+
+    <!-- Форма для обновления пользователя -->
+    <form method="post" action="/updateUser">
+        <h2>Update User</h2>
+        <label for="id_update">User ID</label><br>
+        <input name="id" type="text" id="id_update"><br>
+        <label for="name_update">User Name</label><br>
+        <input name="name" type="text" id="name_update"><br>
+        <label for="age_update">User Age</label><br>
+        <input name="age" type="text" id="age_update"><br>
+        <input type="submit" value="Update User">
+    </form>
+
+</div>
+
+<!-- Таблица с пользователями -->
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}">Id</td>
+            <td th:text="${user.name}">Name</td>
+            <td th:text="${user.age}">Age</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
